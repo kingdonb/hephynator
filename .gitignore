@@ -19,10 +19,16 @@
 
 /node_modules
 /yarn-error.log
+/yarn-debug.log*
+.yarn-integrity
 
 /public/assets
+/public/packs
+/public/packs-test
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+.env.local
+
 vendor/bundle
