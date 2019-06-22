@@ -5,6 +5,8 @@
 <table>
   <thead>
     <tr>
+      <th>Cluster Name</th>
+      <th>Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +14,8 @@
   <tbody>
     <% @temp_clusters.each do |temp_cluster| %>
       <tr>
+        <td><%= temp_cluster.name %></td>
+        <td><%= temp_cluster.status_text %></td>
         <td><%= link_to 'Show', temp_cluster %></td>
         <td><%= link_to 'Edit', edit_temp_cluster_path(temp_cluster) %></td>
         <td><%= link_to 'Destroy', temp_cluster, method: :delete, data: { confirm: 'Are you sure?' } %></td>

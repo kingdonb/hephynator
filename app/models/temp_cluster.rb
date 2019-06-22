@@ -1,13 +1,28 @@
 class TempCluster < ApplicationRecord
+  include StatusBadge
+
   EXPIRY_DAYS = 4
+  def activated?
+    cluster_name.present?
+  end
+  def name
+    if cluster_name.present?
+      cluster_name
+    else
+      "(unnamed)"
+    end
+  end
   def expired?
     expiry_date <= LocalTime.current_date
+  end
+  def long_expiry_date
+    "#{expiry_date.strftime("%A")}, #{expiry_date.strftime("%F")}"
   end
   def expiry_date
     created_date + EXPIRY_DAYS.days
   end
   def created_date
-    created_at.to_date
+    LocalTime.d(created_at)
   end
   def cluster
     @cluster ||=
