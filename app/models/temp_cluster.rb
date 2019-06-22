@@ -1,6 +1,9 @@
 class TempCluster < ApplicationRecord
   include StatusBadge
 
+  before_destroy :expire_cluster
+  before_update :cluster
+
   EXPIRY_DAYS = 4
   def activated?
     cluster_name.present?
@@ -39,7 +42,7 @@ class TempCluster < ApplicationRecord
   end
 
   def expire_cluster
-    terminate!
+    terminate! if activated?
   end
 
   def terminated?
