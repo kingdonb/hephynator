@@ -2,7 +2,7 @@
 
 <div><span class="cluster_name"><%= @temp_cluster.cluster_name %></span></div>
 <% if @temp_cluster.terminated? %>
-  <div><span class="terminated_at"><%= @temp_cluster.terminated_at %></span>
+  <div>Dead since: <span class="terminated_at"><%= @temp_cluster.terminated_at %></span>
     <%= @temp_cluster.status_badge.html_safe %>
 <% elsif !@temp_cluster.activated? %>
   <div><span class="terminated_at"></span>
@@ -36,5 +36,5 @@
 </div>
 <% end %>
 
-<%= link_to 'Edit', edit_temp_cluster_path(@temp_cluster) %> |
+<!-- <%= link_to 'Edit', edit_temp_cluster_path(@temp_cluster) %> | -->
 <%= link_to 'Back', temp_clusters_path %>

@@ -13,7 +13,8 @@ class TempCluster < ApplicationRecord
     end
   end
   def expired?
-    expiry_date <= LocalTime.current_date
+    expiry_date <= LocalTime.current_date ||
+      terminated_at.present?
   end
   def long_expiry_date
     "#{expiry_date.strftime("%A")}, #{expiry_date.strftime("%F")}"
