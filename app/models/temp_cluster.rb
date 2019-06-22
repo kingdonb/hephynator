@@ -9,4 +9,24 @@ class TempCluster < ApplicationRecord
   def created_date
     created_at.to_date
   end
+  def cluster
+    if cluster_id.blank?
+      create_cluster
+    else
+      cloud.find_cluster(id: cluster_id)
+    end
+  end
+
+  private
+
+  def cloud
+    @cloud ||= Cloud::DigitalOcean.new
+  end
+
+  class NotImplementedYet < StandardError; end
+  def create_cluster
+    binding.pry
+    #
+    raise NotImplementedYet
+  end
 end
