@@ -11,7 +11,31 @@
     </div>
   <% end %>
 
+  <p>
+  In the future, this page will enable you to set the cluster name, node pool
+  and other parameters like droplet size, node count, and region.
+  </p>
+
+  <p>
+  Right now, it just has one configuration.  You will get a cluster that looks
+  like this:
+  </p>
+  <pre>
+    cluster = DropletKit::KubernetesCluster.new(
+      name: cluster_name, region: 'nyc1',
+      tags: ['hephynator'],
+      node_pools: [ {
+          name: cluster_name + '-1', size: 's-2vcpu-4gb', count: 1
+        } ],
+      version: '1.14.1-do.4'
+    )
+    client.kubernetes_clusters.create(cluster) </pre>
+  <p>
+  Single node pool with a single node and randomly generated name, tagged as
+  <code>hephynator</code>.
+  </p>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Gimme a Cluster" %>
   </div>
 <% end %>
