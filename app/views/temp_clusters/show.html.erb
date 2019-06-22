@@ -25,7 +25,7 @@
       <% end %>
     <% elsif !@temp_cluster.terminated? %>
       <p>Clicking "Kubeconfig" will download a kube.config, place it in ~/.kube/config or set the <code>KUBECONFIG</code> variable to point at it on your filesystem.</p>
-      <button>Kubeconfig</button>
+      <button data-action="cluster#kubeconfig">Kubeconfig</button>
     <% end %>
   </div>
 
