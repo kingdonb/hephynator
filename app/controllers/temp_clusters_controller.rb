@@ -12,6 +12,17 @@ class TempClustersController < ApplicationController
   def show
   end
 
+  def kubeconfig
+    @temp_cluster = TempCluster.find(params[:temp_cluster_id])
+    cluster_name = @temp_cluster.cluster_name
+    if cluster_name.present?
+      send_data @temp_cluster.kubeconfig,
+        filename: "#{cluster_name}-kubeconfig.yaml"
+    else
+      # 
+    end
+  end
+
   # GET /temp_clusters/new
   def new
     @temp_cluster = TempCluster.new
