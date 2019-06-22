@@ -73,6 +73,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    concode (0.1.1)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     cucumber (3.1.2)
@@ -275,6 +276,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   coffee-rails (~> 4.2)
+  concode
   cucumber-rails
   database_cleaner
   dotenv

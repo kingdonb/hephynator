@@ -10,11 +10,20 @@ class TempCluster < ApplicationRecord
     created_at.to_date
   end
   def cluster
-    if cluster_id.blank?
-      create_cluster
-    else
-      cloud.find_cluster(id: cluster_id)
-    end
+    @cluster ||=
+      if cluster_id.blank?
+        create_cluster
+      else
+        get_cluster
+      end
+  end
+
+  def kubeconfig
+    credentials
+  end
+
+  def expire_cluster
+    terminate!
   end
 
   private
@@ -25,8 +34,18 @@ class TempCluster < ApplicationRecord
 
   class NotImplementedYet < StandardError; end
   def create_cluster
-    binding.pry
-    #
-    raise NotImplementedYet
+    c = cloud.gimme_a_new_cluster
+    self.cluster_id = c.id
+    save
+    c
+  end
+  def terminate!
+    cloud.terminate_cluster(cluster_id)
+  end
+  def credentials
+    cloud.kubeconfig(cluster_id)
+  end
+  def get_cluster
+    cloud.find_cluster(id: cluster_id)
   end
 end
