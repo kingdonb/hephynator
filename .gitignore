@@ -31,5 +31,6 @@
 /config/master.key
 .env.local
 .env
+/yamls/basic-auth-secret.yaml
 
 vendor/bundle
