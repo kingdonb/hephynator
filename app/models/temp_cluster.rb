@@ -26,6 +26,10 @@ class TempCluster < ApplicationRecord
     terminate!
   end
 
+  def terminated?
+    terminated_at.present?
+  end
+
   private
 
   def cloud
@@ -36,13 +40,18 @@ class TempCluster < ApplicationRecord
   def create_cluster
     c = cloud.gimme_a_new_cluster
     self.cluster_id = c.id
+    self.cluster_name = c.name
     save
     c
   end
   def terminate!
+    self.terminated_at = Time.now
+    save
     cloud.terminate_cluster(cluster_id)
   end
   def credentials
+    self.last_credentials_at = Time.now
+    save
     cloud.kubeconfig(cluster_id)
   end
   def get_cluster
