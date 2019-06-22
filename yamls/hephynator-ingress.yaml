@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+    kubernetes.io/tls-acme: "true"
+  name: hephynator
+  namespace: hephynator
+spec:
+  rules:
+  - host: hephynator.teamhephy.info
+    http:
+      paths:
+      - backend:
+          serviceName: hephynator
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - hephynator.teamhephy.info
+    secretName: hephynator.teamhephy.info
