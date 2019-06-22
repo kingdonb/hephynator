@@ -28,7 +28,7 @@ class TempClustersController < ApplicationController
 
     respond_to do |format|
       if @temp_cluster.save
-        format.html { redirect_to @temp_cluster, notice: 'Temp cluster was successfully created.' }
+        format.html { redirect_to @temp_cluster, notice: 'Temp cluster initialized. Create will start provisioning.' }
         format.json { render :show, status: :created, location: @temp_cluster }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class TempClustersController < ApplicationController
   def update
     respond_to do |format|
       if @temp_cluster.update(temp_cluster_params)
-        format.html { redirect_to @temp_cluster, notice: 'Temp cluster was successfully updated.' }
+        format.html { redirect_to @temp_cluster, notice: 'Temp cluster was successfully created.' }
         format.json { render :show, status: :ok, location: @temp_cluster }
       else
         format.html { render :edit }
