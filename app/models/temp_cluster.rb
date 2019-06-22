@@ -49,6 +49,12 @@ class TempCluster < ApplicationRecord
     terminated_at.present?
   end
 
+  def tick
+    unless terminated?
+      expire_cluster if expired?
+    end
+  end
+
   private
 
   def cloud
