@@ -16,7 +16,7 @@ module Cloud
         name: cluster_name, region: 'nyc1',
         tags: ['hephynator'],
         node_pools: [ {
-            name: cluster_name + '-1', size: 's-2vcpu-4gb', count: 1
+            name: cluster_name + '-1', size: 's-2vcpu-4gb', count: 3
           } ],
         version: '1.14.1-do.4'
       )
