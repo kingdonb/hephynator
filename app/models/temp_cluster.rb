@@ -1,0 +1,2 @@
+class TempCluster < ApplicationRecord
+end
