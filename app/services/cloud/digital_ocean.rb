@@ -13,7 +13,7 @@ module Cloud
     end
     def create_cluster
       cluster = DropletKit::KubernetesCluster.new(
-        name: cluster_name, region: 'nyc1',
+        name: cluster_name, region: 'nyc3',
         tags: ['hephynator'],
         node_pools: [ {
             name: cluster_name + '-1', size: 's-2vcpu-4gb', count: 3
