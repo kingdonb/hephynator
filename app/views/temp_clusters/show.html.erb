@@ -2,45 +2,46 @@
 
 <div data-controller="cluster">
 
-  <div><span class="cluster_name"><%= @temp_cluster.cluster_name %></span></div>
-  <% if @temp_cluster.terminated? %>
-    <div>Dead since: <span class="terminated_at"><%= @temp_cluster.terminated_at %></span>
-      <%= @temp_cluster.status_badge.html_safe %></div>
-  <% elsif !@temp_cluster.activated? %>
-    <div><span class="terminated_at"></span>
-      <%= @temp_cluster.status_badge.html_safe %></div>
-  <% else %>
-    <div>
-      <span class="terminated_at"></span>
-      <%= @temp_cluster.status_badge.html_safe %>
-      <div>Name: <span class="cluster_name"><%= @temp_cluster.cluster_name %></span></div>
+  <div id="cluster-name-header"><%= cluster_name %></div>
+  <div id="cluster-status">
+    <% if terminated? %>
+      Dead since: <%= terminated_at %>
+      <%= cluster_status_badge %>
+    <% elsif !activated? %>
+      <%= terminated_at %>
+      <%= cluster_status_badge %>
+    <% else %>
+      <%= terminated_at %>
+      <%= cluster_status_badge %>
+      <div>Name: <%= cluster_name %></div>
+      <p>has been activated.</p>
     </div>
-  <% end %>
+  <% end %></div>
 
-  <div>
-    <% if !@temp_cluster.activated? %>
+  <div id="cluster-actions">
+    <% if !activated? %>
       <p>Clicking "Create" will cause a cluster to be born, it will live for only 4 days or less.  You can return here in order to destroy it early.</p>
       <button data-action="cluster#create">Create</button>
-      <%= form_tag(@temp_cluster, method: 'put', remote: true, data: {target: 'cluster.lightup'}) do %>
-      <% end %>
-    <% elsif !@temp_cluster.terminated? %>
+      <%= form_tag(@temp_cluster, method: 'put', remote: true, data: {target: 'cluster.lightup'}) %>
+    <% elsif !terminated? %>
       <p>Clicking "Kubeconfig" will download a kube.config, place it in ~/.kube/config or set the <code>KUBECONFIG</code> variable to point at it on your filesystem.</p>
       <button data-action="cluster#kubeconfig">Kubeconfig</button>
+      <!-- Future home of some new components for interrogating the cluster -->
+    <% else %>
+      <p>Pour one out</p>
     <% end %>
   </div>
 
-  <% if @temp_cluster.terminated? %>
-    <div>
-      <p>This cluster is terminated.</p>
-    </div>
-  <% else %>
-    <div>
-      <p>This cluster is temporary!  It will expire at 12:01am Eastern Time, on
-      <span class="expiry_date"><%= @temp_cluster.long_expiry_date %></span>.
+  <div id="cluster-prognosis">
+    <p>
+    <% if terminated? %>
+      This cluster is terminated.
+    <% else %>
+      This cluster is temporary!  It will expire at 12:01am Eastern Time, on <%= expiry_date %>.
       You should not deploy any permanent infrastructure on it, this is for testing only.
-      </p>
-    </div>
-  <% end %>
+    <% end %>
+    </p>
+  </div>
 
 </div>
 
