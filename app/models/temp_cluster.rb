@@ -1,9 +1,12 @@
 class TempCluster < ApplicationRecord
   include StatusBadge
 
+  scope :activated, ->{ where("cluster_name <> '' and terminated_at is NULL") }
+
   before_destroy :expire_cluster
   before_update :cluster
 
+  MAX_CLUSTERS = 1
   EXPIRY_DAYS = 4
   def activated?
     cluster_name.present?
@@ -49,19 +52,29 @@ class TempCluster < ApplicationRecord
     terminated_at.present?
   end
 
+  def tick
+    unless terminated?
+      expire_cluster if expired?
+    end
+  end
+
   private
 
   def cloud
     @cloud ||= Cloud::DigitalOcean.new
   end
 
-  class NotImplementedYet < StandardError; end
+  class ClusterCreationFailed < StandardError; end
   def create_cluster
-    c = cloud.gimme_a_new_cluster
-    self.cluster_id = c.id
-    self.cluster_name = c.name
-    save
-    c
+    if any_leases_available?
+      c = cloud.gimme_a_new_cluster
+      self.cluster_id = c.id
+      self.cluster_name = c.name
+      save
+      c
+    else
+      raise ClusterCreationFailed, "no leases available!"
+    end
   end
   def terminate!
     self.terminated_at = Time.now
@@ -75,5 +88,8 @@ class TempCluster < ApplicationRecord
   end
   def get_cluster
     cloud.find_cluster(id: cluster_id)
+  end
+  def any_leases_available?
+    TempCluster.activated.count < MAX_CLUSTERS
   end
 end

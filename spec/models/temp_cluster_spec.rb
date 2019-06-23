@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe TempCluster, type: :model do
+  describe '#tick' do
+    context 'when cluster_id is present' do
+      it 'checks the expiry date through #expired?' do
+        pending
+      end
+      it 'actually tears the thing down when #expired? is true' do
+        pending
+      end
+    end
+  end
   describe '#cluster' do
     context 'when cluster_id is blank' do
       it 'attempts to create a new cluster, and returns it' do
@@ -8,7 +18,7 @@ RSpec.describe TempCluster, type: :model do
       end
     end
     context 'when cluster_id is present' do
-      it 'attempts to retrieve the cluster from droplet_kit' do
+      it 'attempts to retrieve the cluster details through droplet_kit' do
         pending
       end
     end
