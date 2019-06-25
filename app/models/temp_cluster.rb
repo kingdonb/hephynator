@@ -2,6 +2,10 @@ class TempCluster < ApplicationRecord
   include StatusBadge
 
   scope :activated, ->{ where("cluster_name <> '' and terminated_at is NULL") }
+  validates :node_count, numericality: {
+    only_integer: true, allow_nil: true,
+    greater_than: 0, less_than_or_equal_to: 3
+  }
 
   before_destroy :expire_cluster
   before_update :cluster
@@ -67,11 +71,15 @@ class TempCluster < ApplicationRecord
   class ClusterCreationFailed < StandardError; end
   def create_cluster
     if any_leases_available?
-      c = cloud.gimme_a_new_cluster
-      self.cluster_id = c.id
-      self.cluster_name = c.name
-      save
-      c
+      if valid?
+        c = cloud.gimme_a_new_cluster(node_count: node_count)
+        self.cluster_id = c.id
+        self.cluster_name = c.name
+        save!
+        c
+      else
+        raise ClusterCreationFailed, "validation failure: #{errors.messages.to_s}"
+      end
     else
       raise ClusterCreationFailed, "no leases available!"
     end

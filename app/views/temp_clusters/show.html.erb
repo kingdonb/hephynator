@@ -15,14 +15,23 @@
       <%= cluster_status_badge %>
       <div>Name: <%= cluster_name %></div>
       <p>has been activated.</p>
-    </div>
-  <% end %></div>
+    <% end %>
+  </div>
 
   <div id="cluster-actions">
     <% if !activated? %>
       <p>Clicking "Create" will cause a cluster to be born, it will live for only 4 days or less.  You can return here in order to destroy it early.</p>
+      <%= form_tag(@temp_cluster, method: 'put', remote: true, data: {target: 'cluster.lightup'}) do %>
+        <label for="temp_cluster[node_count]">Node Count?</label>
+        <select name="temp_cluster[node_count]">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      <% end %>
+
       <button data-action="cluster#create">Create</button>
-      <%= form_tag(@temp_cluster, method: 'put', remote: true, data: {target: 'cluster.lightup'}) %>
+
     <% elsif !terminated? %>
       <p>Clicking "Kubeconfig" will download a kube.config, place it in ~/.kube/config or set the <code>KUBECONFIG</code> variable to point at it on your filesystem.</p>
       <button data-action="cluster#kubeconfig">Kubeconfig</button>
