@@ -11,19 +11,20 @@ module Cloud
     def find_cluster(id)
       client.kubernetes_clusters.find(id)
     end
-    def create_cluster
+    def create_cluster(node_count:)
       cluster = DropletKit::KubernetesCluster.new(
         name: cluster_name, region: 'sfo2',
         tags: ['hephynator'],
         node_pools: [ {
-            name: cluster_name + '-1', size: 's-2vcpu-4gb', count: 3
+            name: cluster_name + '-1', size: 's-2vcpu-4gb', count: node_count
           } ],
         version: '1.14.1-do.4'
       )
       client.kubernetes_clusters.create(cluster)
     end
-    def gimme_a_new_cluster
-      create_cluster
+    def gimme_a_new_cluster(node_count:)
+      raise ArgumentError, "create_cluster expects a node_count keyword parameter" unless node_count.present?
+      create_cluster(node_count: node_count)
     end
     def cluster_name_generator
       generator = Concode::Generator.new

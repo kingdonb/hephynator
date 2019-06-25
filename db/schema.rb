@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_22_035308) do
+ActiveRecord::Schema.define(version: 2019_06_25_215041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_06_22_035308) do
     t.datetime "terminated_at"
     t.string "cluster_name"
     t.datetime "last_credentials_at"
+    t.integer "node_count"
   end
 
 end
