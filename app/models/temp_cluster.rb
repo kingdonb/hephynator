@@ -10,7 +10,7 @@ class TempCluster < ApplicationRecord
   before_destroy :expire_cluster
   before_update :cluster
 
-  MAX_CLUSTERS = 1
+  MAX_CLUSTERS = 3
   EXPIRY_DAYS = 4
   def activated?
     cluster_name.present?

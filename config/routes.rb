@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root to: 'temp_clusters#index'
+
   resources :temp_clusters do
     get 'kubeconfig'
   end
