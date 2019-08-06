@@ -28,6 +28,10 @@
           <option>2</option>
           <option>3</option>
         </select>
+        <label for="temp_cluster[kube_version]">Kube Version</label>
+        <select name="temp_cluster[kube_version]">
+          <%= kube_versions_options %>
+        </select>
       <% end %>
 
       <button data-action="cluster#create">Create</button>

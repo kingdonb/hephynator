@@ -40,5 +40,11 @@ module Cloud
     def kubeconfig(cluster_id)
       client.kubernetes_clusters.kubeconfig(id: cluster_id)
     end
+    def kube_versions
+      versions = client.kubernetes_options.all.versions
+      versions.map do |v|
+        {v.kubernetes_version => v.slug}
+      end.reduce({}, :merge)
+    end
   end
 end

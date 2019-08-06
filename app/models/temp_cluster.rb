@@ -48,6 +48,10 @@ class TempCluster < ApplicationRecord
     credentials
   end
 
+  def available_kube_versions
+    cloud.kube_versions
+  end
+
   def expire_cluster
     terminate! if activated?
   end
