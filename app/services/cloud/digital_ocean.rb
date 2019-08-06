@@ -18,8 +18,8 @@ module Cloud
         node_pools: [ {
             name: cluster_name + '-1', size: 's-2vcpu-4gb', count: node_count
           } ],
-        version: '1.14.4-do.0'
-        # valid versions: 1.12.10-do.0, 1.13.8-do.0, 1.14.4-do.0
+        version: '1.14.4-do.1'
+        # valid versions: 1.12.10-do.1, 1.13.8-do.1, 1.14.4-do.1
       )
       client.kubernetes_clusters.create(cluster)
     end
