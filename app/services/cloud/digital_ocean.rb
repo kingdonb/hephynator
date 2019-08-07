@@ -11,21 +11,21 @@ module Cloud
     def find_cluster(id)
       client.kubernetes_clusters.find(id)
     end
-    def create_cluster(node_count:)
+    def create_cluster(node_count:, kube_version:)
       cluster = DropletKit::KubernetesCluster.new(
         name: cluster_name, region: 'sfo2',
         tags: ['hephynator'],
         node_pools: [ {
             name: cluster_name + '-1', size: 's-2vcpu-4gb', count: node_count
           } ],
-        version: '1.14.4-do.1'
-        # valid versions: 1.12.10-do.1, 1.13.8-do.1, 1.14.4-do.1
+        version: kube_version
       )
       client.kubernetes_clusters.create(cluster)
     end
-    def gimme_a_new_cluster(node_count:)
+    def gimme_a_new_cluster(node_count:, kube_version:)
       raise ArgumentError, "create_cluster expects a node_count keyword parameter" unless node_count.present?
-      create_cluster(node_count: node_count)
+      raise ArgumentError, "create_cluster expects a kube_version keyword parameter" unless kube_version.present?
+      create_cluster(node_count: node_count, kube_version: kube_version)
     end
     def cluster_name_generator
       generator = Concode::Generator.new
@@ -39,6 +39,12 @@ module Cloud
     end
     def kubeconfig(cluster_id)
       client.kubernetes_clusters.kubeconfig(id: cluster_id)
+    end
+    def kube_versions
+      versions = client.kubernetes_options.all.versions
+      versions.map do |v|
+        {v.kubernetes_version => v.slug}
+      end.reduce({}, :merge)
     end
   end
 end

@@ -48,6 +48,10 @@ class TempCluster < ApplicationRecord
     credentials
   end
 
+  def available_kube_versions
+    cloud.kube_versions
+  end
+
   def expire_cluster
     terminate! if activated?
   end
@@ -72,7 +76,7 @@ class TempCluster < ApplicationRecord
   def create_cluster
     if any_leases_available?
       if valid?
-        c = cloud.gimme_a_new_cluster(node_count: node_count)
+        c = cloud.gimme_a_new_cluster(node_count: node_count, kube_version: kube_version)
         self.cluster_id = c.id
         self.cluster_name = c.name
         save!

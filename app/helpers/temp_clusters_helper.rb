@@ -1,4 +1,7 @@
 module TempClustersHelper
+  def kube_versions_options
+    options_for_select(@temp_cluster.available_kube_versions)
+  end
   def terminated?
     @temp_cluster.terminated?
   end

@@ -80,6 +80,6 @@ class TempClustersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def temp_cluster_params
-      params.fetch(:temp_cluster, {}).permit(:node_count)
+      params.fetch(:temp_cluster, {}).permit(:node_count, :kube_version)
     end
 end
