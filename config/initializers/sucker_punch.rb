@@ -1,2 +1,4 @@
 # On application start, enqueue TempClusterReaperJob for any activated clusters
-TempCluster.enqueue_all_reaper_jobs
+if defined?(::Rails::Server)
+  TempCluster.enqueue_all_reaper_jobs
+end
