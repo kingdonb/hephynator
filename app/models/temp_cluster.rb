@@ -10,6 +10,14 @@ class TempCluster < ApplicationRecord
   before_destroy :expire_cluster
   before_update :cluster
 
+  def self.enqueue_all_reaper_jobs
+    activated.each do |temp_cluster|
+      TempClusterReaperJob.perform_async_for(temp_cluster)
+    end
+
+    return true
+  end
+
   MAX_CLUSTERS = 3
   EXPIRY_DAYS = 4
   def activated?
@@ -80,6 +88,7 @@ class TempCluster < ApplicationRecord
         self.cluster_id = c.id
         self.cluster_name = c.name
         save!
+        TempClusterReaperJob.perform_async_for(self)
         c
       else
         raise ClusterCreationFailed, "validation failure: #{errors.messages.to_s}"
