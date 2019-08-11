@@ -4,17 +4,19 @@ class TempClusterReaperJob
   def perform(temp_cluster_id)
     ActiveRecord::Base.connection_pool.with_connection do
       tc = TempCluster.find(temp_cluster_id)
-      if LocalTime.current_date >= tc.expiry_date
-        # Rails.logger.info "(reaper doing nothing, this is only a test)"
+      if tc&.expiry_date&.<= LocalTime.current_date
         Rails.logger.info "Calling #tick to terminate #{tc.cluster_name}..."
         tc.tick
         if tc.terminated?
           Rails.logger.info "#{tc.cluster_name} was terminated."
         end
+      elsif tc.blank?
+        Rails.logger.info "TempClusterReaperJob for #{temp_cluster_id} was "\
+          "not found, reaper job came after the cluster had already been deleted."
       else
-        puts "TempClusterReaperJob for #{temp_cluster_id} was "\
-          "called too early, try again later. Cluster may not "\
-          "be terminated without another TempClusterReaperJob."
+        Rails.logger.info "TempClusterReaperJob for #{temp_cluster_id} was "\
+          "called too early, try again later. Cluster may not ever finally "\
+          "be terminated without scheduling another TempClusterReaperJob."
       end
     end
   end
