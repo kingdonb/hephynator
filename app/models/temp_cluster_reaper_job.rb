@@ -32,9 +32,9 @@ class TempClusterReaperJob
     end
   end
   def self.seconds_until_termination_time_for(temp_cluster)
-    termination_time(temp_cluster) - Time.now
+    LocalTime.t(termination_time(temp_cluster)) - Time.now
   end
   def self.termination_time(temp_cluster)
-    temp_cluster.expiry_date + 15.minutes
+    LocalTime.t(temp_cluster.expiry_date) + 15.minutes
   end
 end

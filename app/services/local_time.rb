@@ -1,6 +1,10 @@
 class LocalTime
   TIME_ZONE = 'America/New_York'.freeze
 
+  def self.t(timestamp)
+    timestamp.in_time_zone(TIME_ZONE)
+  end
+
   def self.d(timestamp)
     timestamp.in_time_zone(TIME_ZONE).to_date
   end
