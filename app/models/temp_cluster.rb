@@ -50,6 +50,14 @@ class TempCluster < ApplicationRecord
       else
         get_cluster
       end
+
+    if @cluster.class.to_s == 'Cloud::DigitalOcean::NotCluster'
+      e = @cluster
+      @cluster = nil
+      raise e
+    end
+
+    @cluster
   end
 
   def kubeconfig
@@ -101,6 +109,8 @@ class TempCluster < ApplicationRecord
     self.terminated_at = Time.now
     save
     cloud.terminate_cluster(cluster_id)
+  rescue Cloud::DigitalOcean::NotCluster => e
+    Rails.logger.info "#{e}, #{self.cluster_name}: '#{self.cluster_id}' appears to have been destroyed already."
   end
   def credentials
     self.last_credentials_at = Time.now
