@@ -8,8 +8,19 @@ module Cloud
       @client = DropletKit::Client.new(access_token: access_token)
     end
 
+    class NotCluster < StandardError; end
     def find_cluster(id)
       client.kubernetes_clusters.find(id)
+    rescue DropletKit::Error => e
+      t = e.message.split(': ')
+      code = t[0].to_i
+      data = JSON.parse(t[1])
+
+      if code == 404
+        return NotCluster.new('there is not a cluster here')
+      else
+        raise e
+      end
     end
     def create_cluster(node_count:, kube_version:)
       cluster = DropletKit::KubernetesCluster.new(
