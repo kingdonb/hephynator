@@ -24,7 +24,7 @@ module Cloud
     end
     def create_cluster(node_count:, kube_version:)
       cluster = DropletKit::KubernetesCluster.new(
-        name: cluster_name, region: 'sfo2',
+        name: cluster_name, region: 'ams3',
         tags: ['hephynator'],
         node_pools: [ {
             name: cluster_name + '-1', size: 's-2vcpu-4gb', count: node_count
