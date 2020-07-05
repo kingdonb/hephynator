@@ -1,0 +1,19 @@
+config:
+  existingSecret: hephynator-oauth2-secret
+  configFile: |-
+    email_domains = [ "*" ]
+    upstreams = [ "file:///dev/null" ]
+    provider = "github"
+    github_org = "kingdon-ci"
+ingress:
+  enabled: true
+  path: /oauth2
+  hosts:
+    - hephynator.teamhephy.info
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-production
+  tls:
+  - secretName: hephynator-tls
+    hosts:
+      - hephynator.teamhephy.info
