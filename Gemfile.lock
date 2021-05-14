@@ -284,6 +284,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
     sucker_punch (2.1.2)
       concurrent-ruby (~> 1.0)
     sys-uname (1.2.1)
@@ -344,6 +345,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   sass-rails (~> 6.0)
   shoulda-matchers
+  sqlite3
   sucker_punch (~> 2.0)
   turbolinks (~> 5)
   tzinfo-data
