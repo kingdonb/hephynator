@@ -43,7 +43,7 @@ gem 'concode'
 gem 'lograge'
 
 # Sucker Punch for ActiveJob
-gem 'sucker_punch', '~> 2.0'
+gem 'sucker_punch', '~> 3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
