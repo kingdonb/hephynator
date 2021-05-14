@@ -54,6 +54,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-rails'
   gem 'dotenv'
+  gem 'sqlite3'
 end
 
 group :development do
