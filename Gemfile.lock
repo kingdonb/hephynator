@@ -199,7 +199,7 @@ GEM
     nokogiri (1.11.4)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
-    pg (1.2.3)
+    pg (1.4.6)
     protobuf-cucumber (3.10.8)
       activesupport (>= 3.2)
       middleware
@@ -349,7 +349,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.5.2)
   lograge
-  pg (~> 1.2.0)
+  pg (~> 1.4.0)
   pry-rails
   puma (~> 5.0)
   rails (> 5.2)
