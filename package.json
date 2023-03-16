@@ -2,7 +2,7 @@
   "name": "hephynator",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "5.4.0",
+    "@rails/webpacker": "5.4.4",
     "stimulus": "2.0.0"
   },
   "devDependencies": {
