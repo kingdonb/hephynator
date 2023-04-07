@@ -18,14 +18,11 @@ gem 'sass-rails', '~> 6.0'
 # https://github.com/rails/jsbundling-rails/blob/main/docs/switch_from_webpacker.md
 gem 'jsbundling-rails'
 gem 'stimulus-rails'
+gem 'turbo-rails'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 5.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
