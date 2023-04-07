@@ -1,6 +1,9 @@
 {
   "name": "hephynator",
   "private": true,
+  "engines": {
+    "node": "19.x"
+  },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
     "chokidar": "^3.5.3",
