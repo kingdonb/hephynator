@@ -5,7 +5,10 @@ module.exports = {
   mode: "production",
   devtool: "source-map",
   entry: {
-    application: "./app/javascript/application.js"
+    application: [
+      './app/assets/javascripts/application-esbuild.js',
+    //'./app/assets/stylesheets/application.scss',
+    ]
   },
   output: {
     filename: "[name].js",
