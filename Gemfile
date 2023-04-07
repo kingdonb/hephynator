@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 # Replacement for webpacker, going based on:
 # https://github.com/rails/jsbundling-rails/blob/main/docs/switch_from_webpacker.md
 gem 'jsbundling-rails'
+gem 'stimulus-rails'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
