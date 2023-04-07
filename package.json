@@ -10,7 +10,6 @@
     "chokidar": "^3.5.3",
     "esbuild": "^0.17.15",
     "esbuild-rails": "^1.0.4",
-    "jquery": "^3.6.4",
     "stimulus": "2.0.0"
   },
   "scripts": {
