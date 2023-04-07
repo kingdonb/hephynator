@@ -302,6 +302,8 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.6.2)
       mini_portile2 (~> 2.8.0)
+    stimulus-rails (1.2.1)
+      railties (>= 6.0.0)
     sucker_punch (3.1.0)
       concurrent-ruby (~> 1.0)
     sys-uname (1.2.2)
@@ -360,6 +362,7 @@ DEPENDENCIES
   sass-rails (~> 6.0)
   shoulda-matchers
   sqlite3
+  stimulus-rails
   sucker_punch (~> 3.0)
   turbolinks (~> 5)
   tzinfo-data
@@ -370,4 +373,4 @@ RUBY VERSION
    ruby 3.0.5p211
 
 BUNDLED WITH
-   2.4.10
+   2.3.26
