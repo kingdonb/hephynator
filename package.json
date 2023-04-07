@@ -3,12 +3,13 @@
   "private": true,
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
+    "chokidar": "^3.5.3",
     "esbuild": "^0.17.15",
     "esbuild-rails": "^1.0.4",
     "stimulus": "2.0.0"
   },
   "scripts": {
-    "build": "esbuild --config='esbuild.config.js'"
+    "build": "node esbuild.config.mjs"
   },
   "devDependencies": {
     "esbuild-plugin-stimulus": "^0.1.5"
