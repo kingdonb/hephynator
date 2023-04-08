@@ -27,12 +27,12 @@
       node_pools: [ {
           name: cluster_name + '-1', size: 's-2vcpu-4gb', count: 3
         } ],
-      version: '1.14.4-do.0'
+      version: '1.26.3-do.0'
     )
     client.kubernetes_clusters.create(cluster) </pre>
   <p>
   Single node pool with three nodes and randomly generated cluster name, tagged
-  as <code>hephynator</code>.
+  as <code>hephynator</code>. (The pool size and version can both be adjusted.)
   </p>
 
   <div class="actions">
