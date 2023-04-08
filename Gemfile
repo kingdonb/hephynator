@@ -16,7 +16,7 @@ gem 'puma', '~> 6.0'
 gem 'cssbundling-rails'
 gem 'jsbundling-rails'
 gem 'stimulus-rails'
-gem 'turbo-rails'
+gem 'turbo-rails', "~> 1.0"
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 

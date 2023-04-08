@@ -346,7 +346,7 @@ DEPENDENCIES
   sqlite3
   stimulus-rails
   sucker_punch (~> 3.0)
-  turbo-rails
+  turbo-rails (~> 1.0)
   tzinfo-data
   web-console (>= 3.3.0)
 
