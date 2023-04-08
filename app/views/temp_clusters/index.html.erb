@@ -18,7 +18,9 @@
         <td><%= temp_cluster.status_text %></td>
         <td><%= link_to 'Show', temp_cluster %></td>
         <!-- <td><%= link_to 'Edit', edit_temp_cluster_path(temp_cluster) %></td> -->
-        <td><%= link_to 'Destroy', temp_cluster, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Destroy', temp_cluster, method: :delete, form: {
+          data: { turbo_confirm: 'Are you sure?' }
+        }%></td>
       </tr>
     <% end %>
   </tbody>
