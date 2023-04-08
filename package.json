@@ -10,10 +10,12 @@
     "chokidar": "^3.5.3",
     "esbuild": "^0.17.15",
     "esbuild-rails": "^1.0.4",
+    "sass": "^1.61.0",
     "stimulus": "2.0.0"
   },
   "scripts": {
-    "build": "node esbuild.config.mjs"
+    "build": "node esbuild.config.mjs",
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "devDependencies": {
     "esbuild-plugin-stimulus": "^0.1.5"

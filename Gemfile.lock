@@ -92,6 +92,8 @@ GEM
     concode (0.1.1)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
+    cssbundling-rails (1.1.2)
+      railties (>= 6.0.0)
     cucumber (8.0.0)
       builder (~> 3.2, >= 3.2.4)
       cucumber-ci-environment (~> 9.0, >= 9.0.4)
@@ -202,14 +204,14 @@ GEM
     nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    pg (1.2.3)
+    pg (1.4.6)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (5.0.1)
-    puma (5.6.5)
+    puma (6.2.1)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
@@ -273,16 +275,6 @@ GEM
       rspec-support (~> 3.10)
     rspec-support (3.12.0)
     ruby2_keywords (0.0.5)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
     sprockets (4.2.0)
@@ -302,7 +294,6 @@ GEM
       ffi (~> 1.1)
     thor (1.2.1)
     thread_safe (0.3.6)
-    tilt (2.1.0)
     timeout (0.3.2)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -334,6 +325,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   concode
+  cssbundling-rails
   cucumber-rails
   database_cleaner
   dotenv
@@ -343,14 +335,14 @@ DEPENDENCIES
   jsbundling-rails
   listen (>= 3.0.5, < 3.5.2)
   lograge
-  pg (~> 1.2.0)
+  pg (~> 1.4.0)
   pry-rails
-  puma (~> 5.0)
-  rails (> 5.2)
+  puma (~> 6.0)
+  rails (~> 7.0)
   rails-controller-testing
   rspec-rails (~> 5.0)
-  sass-rails (~> 6.0)
   shoulda-matchers
+  sprockets-rails
   sqlite3
   stimulus-rails
   sucker_punch (~> 3.0)
