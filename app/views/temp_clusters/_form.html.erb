@@ -12,12 +12,12 @@
   <% end %>
 
   <p>
-  In the future, this page will enable you to set the cluster name, node pool
-  and other parameters like droplet size, node count, and region.
+  In the future, this page would enable you to set the cluster name, node pool
+  and other parameters like droplet size and region.
   </p>
 
   <p>
-  Right now, it just has one configuration.  You will get a cluster that looks
+  Right now, it has limited configuration.  You will get a cluster that looks
   like this:
   </p>
   <pre>
@@ -25,14 +25,16 @@
       name: cluster_name, region: 'sfo2',
       tags: ['hephynator'],
       node_pools: [ {
-          name: cluster_name + '-1', size: 's-2vcpu-4gb', count: 3
+          name: cluster_name + '-1', size: 's-2vcpu-4gb',
+          count: n  # :: {{ n: 1, 2, 3 }}
         } ],
-      version: '1.14.4-do.0'
+      version: '1.26.3-do.0'  # :: options available determined by DO API
     )
     client.kubernetes_clusters.create(cluster) </pre>
   <p>
-  Single node pool with three nodes and randomly generated cluster name, tagged
-  as <code>hephynator</code>.
+  Single node pool with (1..3) nodes and randomly generated cluster name,
+  tagged as <code>hephynator</code>. (Node count and K8s version can be set.)
+  There is no autoscaling, but maybe that would be a nice future enhancement?
   </p>
 
   <div class="actions">
