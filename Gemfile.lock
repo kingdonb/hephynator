@@ -204,7 +204,7 @@ GEM
     nokogiri (1.14.3)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    pg (1.4.6)
+    pg (1.5.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -335,7 +335,7 @@ DEPENDENCIES
   jsbundling-rails
   listen (>= 3.0.5, < 3.8.1)
   lograge
-  pg (~> 1.4.0)
+  pg (~> 1.5.0)
   pry-rails
   puma (~> 6.0)
   rails (~> 7.0)
